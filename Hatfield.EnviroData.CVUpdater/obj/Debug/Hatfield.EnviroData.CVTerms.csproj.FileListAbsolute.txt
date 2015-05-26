@@ -1,0 +1,7 @@
+c:\users\gvassas\documents\visual studio 2013\Projects\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVUpdater\bin\Debug\Hatfield.EnviroData.CVUpdater.exe
+c:\users\gvassas\documents\visual studio 2013\Projects\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVUpdater\bin\Debug\Hatfield.EnviroData.CVUpdater.pdb
+c:\users\gvassas\documents\visual studio 2013\Projects\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVUpdater\obj\Debug\Hatfield.EnviroData.CVTerms.csprojResolveAssemblyReference.cache
+c:\users\gvassas\documents\visual studio 2013\Projects\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVUpdater\obj\Debug\Hatfield.EnviroData.CVUpdater.exe
+c:\users\gvassas\documents\visual studio 2013\Projects\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVUpdater\obj\Debug\Hatfield.EnviroData.CVUpdater.pdb
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVUpdater\obj\Debug\Hatfield.EnviroData.CVUpdater.exe
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVUpdater\obj\Debug\Hatfield.EnviroData.CVUpdater.pdb

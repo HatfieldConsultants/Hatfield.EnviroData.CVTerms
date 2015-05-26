@@ -1,7 +1,0 @@
-c:\users\gvassas\documents\visual studio 2013\Projects\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVTerms\obj\Debug\Hatfield.EnviroData.CVTerms.Test.csprojResolveAssemblyReference.cache
-c:\users\gvassas\documents\visual studio 2013\Projects\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVTerms\bin\Debug\Hatfield.EnviroData.CVTerms.dll
-c:\users\gvassas\documents\visual studio 2013\Projects\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVTerms\bin\Debug\Hatfield.EnviroData.CVTerms.pdb
-c:\users\gvassas\documents\visual studio 2013\Projects\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVTerms\bin\Debug\nunit.framework.dll
-c:\users\gvassas\documents\visual studio 2013\Projects\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVTerms\bin\Debug\nunit.framework.xml
-c:\users\gvassas\documents\visual studio 2013\Projects\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVTerms\obj\Debug\Hatfield.EnviroData.CVTerms.dll
-c:\users\gvassas\documents\visual studio 2013\Projects\Hatfield.EnviroData.CVUpdater\Hatfield.EnviroData.CVTerms\obj\Debug\Hatfield.EnviroData.CVTerms.pdb

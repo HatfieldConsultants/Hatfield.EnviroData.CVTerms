@@ -1,0 +1,5 @@
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.CVTermsUploader.Test.exe
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.CVTermsUploader.Test.pdb
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\obj\Debug\Hatfield.EnviroData.CVTerms.Test.csprojResolveAssemblyReference.cache
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\obj\Debug\Hatfield.EnviroData.CVTermsUploader.Test.exe
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\obj\Debug\Hatfield.EnviroData.CVTermsUploader.Test.pdb

@@ -1,5 +1,12 @@
-C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.CVTermsUploader.Test.exe
 C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.CVTermsUploader.Test.pdb
 C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\obj\Debug\Hatfield.EnviroData.CVTerms.Test.csprojResolveAssemblyReference.cache
-C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\obj\Debug\Hatfield.EnviroData.CVTermsUploader.Test.exe
 C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\obj\Debug\Hatfield.EnviroData.CVTermsUploader.Test.pdb
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.CVTermsUploader.Test.dll
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\obj\Debug\Hatfield.EnviroData.CVTermsUploader.Test.dll
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.CVUpdater.exe
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\nunit.framework.dll
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\HtmlAgilityPack.dll
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.CVUpdater.pdb
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\nunit.framework.xml
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\HtmlAgilityPack.xml

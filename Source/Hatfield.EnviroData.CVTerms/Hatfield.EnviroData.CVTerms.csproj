@@ -71,12 +71,23 @@
     <Compile Include="CVTermParser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XMLImporterBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Hatfield.EnviroData.DataAcquisition\Source\Hatfield.EnviroData.DataAcquisition.XML\Hatfield.EnviroData.DataAcquisition.XML.csproj">
+      <Project>{3dc7a821-c52c-42d7-b769-abff94b24ede}</Project>
+      <Name>Hatfield.EnviroData.DataAcquisition.XML</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hatfield.EnviroData.DataAcquisition\Source\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj">
+      <Project>{fb279550-18d7-43d5-bc1e-01b651ed1c76}</Project>
+      <Name>Hatfield.EnviroData.DataAcquisition</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

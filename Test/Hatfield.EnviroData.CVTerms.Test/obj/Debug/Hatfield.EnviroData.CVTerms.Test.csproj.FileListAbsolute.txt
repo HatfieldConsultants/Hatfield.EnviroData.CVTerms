@@ -10,3 +10,8 @@ C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.En
 C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\nunit.framework.xml
 C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\HtmlAgilityPack.xml
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.DataAcquisition.dll
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.DataAcquisition.XML.dll
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.FileSystems.dll
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.DataAcquisition.pdb
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.DataAcquisition.XML.pdb

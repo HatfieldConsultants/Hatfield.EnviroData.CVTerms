@@ -1,4 +1,5 @@
-﻿using HtmlAgilityPack;
+﻿using Hatfield.EnviroData.DataAcquisition.XML;
+using HtmlAgilityPack;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Hatfield.EnviroData.CVUpdater
 {
@@ -33,7 +35,7 @@ namespace Hatfield.EnviroData.CVUpdater
             return Endpoints;
         }
 
-        public string GetCV(string endpoint, string format)
+        public string GetCVSkos(string endpoint, string format)
         {
             using (var client = new HttpClient())
             {
@@ -41,7 +43,7 @@ namespace Hatfield.EnviroData.CVUpdater
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/plain"));
 
-                HttpResponseMessage response = client.GetAsync("actiontype/?format=skos").Result;
+                HttpResponseMessage response = client.GetAsync("/api/v1/actiontype/?format=skos").Result;
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -56,9 +58,23 @@ namespace Hatfield.EnviroData.CVUpdater
             }
         }
 
-        public void ImportXMLData()
+        public void ImportXMLData(XDocument doc)
         {
+            var dataToImport = new XMLDataToImport("result", doc);
 
+            var dataImporter = new XMLImporterBuilder().Build();
+
+            var extractedDataSet = dataImporter.Extract<CVModel>(dataToImport);
         }
+
+        //public IEnumerable<CVModel> GetAllCVs(List<string> endpoints)
+        //{
+        //    IEnumerable<CVModel> results;
+
+        //    foreach (var endpoint in endpoints)
+        //    { 
+
+        //    }
+        //}
     }
 }

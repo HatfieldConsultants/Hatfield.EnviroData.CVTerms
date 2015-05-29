@@ -5,15 +5,15 @@ using System.Text;
 using NUnit.Framework;
 using Hatfield.EnviroData.CVUpdater;
 using System.Configuration;
+using System.Xml.Linq;
 
 namespace Hatfield.EnviroData.CVTermsUploader.Test
 {
+    [TestFixture]
     public class CVTermsTest
     {
-       // [TestFixture]
-
         [Test]
-        public void ScrapeCVEndpoints()
+        public void ScrapeCVEndpointsTest()
         {
             CVTermParser parser = new CVTermParser();
             var endpoints = parser.GetAPIEndpoints("http://vocabulary.odm2.org/api/v1/", "http://vocabulary.odm2.org");
@@ -23,17 +23,27 @@ namespace Hatfield.EnviroData.CVTermsUploader.Test
         }   
 
         [Test]
-        public void GetJsonCVEndpoints()
+        public void GetJsonCVEndpointsTest()
         {
 
         }
 
+
+
         [Test]
-        public void GetXMLResponse()
+        public void GetCVTest()
         {
             CVTermParser parser = new CVTermParser();
-            var result = parser.GetCV("http://vocabulary.odm2.org/api/v1/", "");
-                
+            var result = parser.GetCVSkos("http://vocabulary.odm2.org", "");
+
+        }
+
+        [Test]
+        public void ImportXMLDataTest()
+        {
+            CVTermParser parser = new CVTermParser();
+            var doc = XDocument.Parse(parser.GetCVSkos("http://vocabulary.odm2.org", ""));
+            parser.ImportXMLData(doc);
         }
     }
 }

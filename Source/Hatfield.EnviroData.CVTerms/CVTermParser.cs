@@ -17,19 +17,19 @@ namespace Hatfield.EnviroData.CVUpdater
     {
         public CVTermParser() { }
 
-        public List<string> GetAPIEndpoints(string apiRoot, string url)
+        public Dictionary<string, string> GetAPIEndpoints(string apiRoot, string url)
         {
             HtmlWeb hw = new HtmlWeb();
             HtmlDocument doc = hw.Load(url);
 
-            List<string> Endpoints = new List<string>();
+            Dictionary<string, string> Endpoints = new Dictionary<string, string>();
 
             foreach (HtmlNode div in doc.DocumentNode.SelectNodes("//div[contains(@class,'list-title')]"))
             {
-                var name = div.ChildNodes.Select(x => x.Element("h3")).First().InnerText;
-                name = name.Replace(" ", "").ToLower();
+                var actionTypeName = div.ChildNodes.Select(x => x.Element("h3")).First().InnerText;
+                var name = actionTypeName.Replace(" ", "").ToLower();
                 var endpoint = apiRoot + name;
-                Endpoints.Add(endpoint);
+                Endpoints.Add(actionTypeName, endpoint);
             }
 
             return Endpoints;

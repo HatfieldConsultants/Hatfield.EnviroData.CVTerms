@@ -20,6 +20,9 @@ namespace Hatfield.EnviroData.CVTermsUploader.Test
 
             Assert.IsNotEmpty(endpoints);
             Assert.AreEqual(28, endpoints.Count());
+
+            Assert.AreEqual("Action Type", endpoints.ElementAt(0).Key);
+            Assert.AreEqual("http://vocabulary.odm2.org/api/v1/actiontype", endpoints.ElementAt(0).Value);
         }   
 
         [Test]

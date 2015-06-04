@@ -13,6 +13,10 @@ namespace Hatfield.EnviroData.CVUpdater
             string ApiUrl = ConfigurationManager.AppSettings["ApiUrl"];
             string VocabSiteUrl = ConfigurationManager.AppSettings["VocabTermsUrl"];
 
+            var parser = new CVTermParser();
+
+            var endPoints = parser.GetAPIEndpoints(ApiUrl, VocabSiteUrl);
+
 
         }
     }

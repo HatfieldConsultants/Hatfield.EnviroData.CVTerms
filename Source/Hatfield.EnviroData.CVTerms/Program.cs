@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -25,10 +25,11 @@ namespace Hatfield.EnviroData.CVUpdater
             foreach (var endpoint in endpoints)
             {
                 var doc = new XDocument();
-                var rawCV = parser.GetSingleCV(ApiUrl, endpoint, "skos");
+                var rawCV = parser.GetSingleCV(ApiUrl, endpoint.Value, "skos");
                 var results = parser.ImportXMLData(XDocument.Parse(rawCV));
-                repository.WriteToDB(endpoint, results.ExtractedEntities);
+                repository.WriteToDB(endpoint.Value, results.ExtractedEntities);
             }
         }
     }
 }
+

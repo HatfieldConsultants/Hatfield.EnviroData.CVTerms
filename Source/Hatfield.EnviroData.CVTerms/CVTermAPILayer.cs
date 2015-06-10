@@ -1,4 +1,4 @@
-﻿using Hatfield.EnviroData.DataAcquisition;
+using Hatfield.EnviroData.DataAcquisition;
 using Hatfield.EnviroData.DataAcquisition.XML;
 using HtmlAgilityPack;
 using Newtonsoft.Json;
@@ -18,22 +18,22 @@ namespace Hatfield.EnviroData.CVUpdater
     {
         public CVTermAPILayer() { }
 
-        public List<string> GetAPIEndpoints(string url)
+       public Dictionary<string, string> GetAPIEndpoints(string url)
         {
             HtmlWeb hw = new HtmlWeb();
             HtmlDocument doc = hw.Load(url);
 
-            List<string> Endpoints = new List<string>();
+            Dictionary<string, string> Endpoints = new Dictionary<string, string>();
 
             foreach (HtmlNode div in doc.DocumentNode.SelectNodes("//div[contains(@class,'list-title')]"))
             {
-                var name = div.ChildNodes.Select(x => x.Element("h3")).First().InnerText;
-                name = name.Replace(" ", "").ToLower();
+                var actionTypeName = div.ChildNodes.Select(x => x.Element("h3")).First().InnerText;
+                var name = actionTypeName.Replace(" ", "").ToLower();
                 char[] trimmed = name.ToCharArray();
                 trimmed = Array.FindAll<char>(trimmed, (x => (char.IsLetterOrDigit(x))));
                 name = new string(trimmed);
                 var endpoint = name;
-                Endpoints.Add(endpoint);
+                Endpoints.Add(actionTypeName, endpoint);
             }
 
             return Endpoints;
@@ -76,15 +76,6 @@ namespace Hatfield.EnviroData.CVUpdater
 
             return extractedDataSet;
         }
-
-        //public IEnumerable<CVModel> GetAllCVs(List<string> endpoints)
-        //{
-        //    IEnumerable<CVModel> results;
-
-        //    foreach (var endpoint in endpoints)
-        //    { 
-
-        //    }
-        //}
     }
 }
+

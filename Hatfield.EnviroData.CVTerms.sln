@@ -14,9 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{29CCC09E-6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.CVTerms.Test", "Test\Hatfield.EnviroData.CVTerms.Test\Hatfield.EnviroData.CVTerms.Test.csproj", "{07EDF8B8-CA54-4856-96A1-1605C364FBF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.XML", "..\Hatfield.EnviroData.DataAcquisition\Source\Hatfield.EnviroData.DataAcquisition.XML\Hatfield.EnviroData.DataAcquisition.XML.csproj", "{3DC7A821-C52C-42D7-B769-ABFF94B24EDE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition", "..\Hatfield.EnviroData.DataAcquisition\Source\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj", "{FB279550-18D7-43D5-BC1E-01B651ED1C76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hatfield.EnviroData.DataAcquisition.XML", "..\Hatfield.EnviroData.DataAcquisition\Source\Hatfield.EnviroData.DataAcquisition.XML\Hatfield.EnviroData.DataAcquisition.XML.csproj", "{3DC7A821-C52C-42D7-B769-ABFF94B24EDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,14 +32,14 @@ Global
 		{07EDF8B8-CA54-4856-96A1-1605C364FBF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07EDF8B8-CA54-4856-96A1-1605C364FBF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07EDF8B8-CA54-4856-96A1-1605C364FBF3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DC7A821-C52C-42D7-B769-ABFF94B24EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DC7A821-C52C-42D7-B769-ABFF94B24EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DC7A821-C52C-42D7-B769-ABFF94B24EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DC7A821-C52C-42D7-B769-ABFF94B24EDE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB279550-18D7-43D5-BC1E-01B651ED1C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FB279550-18D7-43D5-BC1E-01B651ED1C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB279550-18D7-43D5-BC1E-01B651ED1C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB279550-18D7-43D5-BC1E-01B651ED1C76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DC7A821-C52C-42D7-B769-ABFF94B24EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DC7A821-C52C-42D7-B769-ABFF94B24EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DC7A821-C52C-42D7-B769-ABFF94B24EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DC7A821-C52C-42D7-B769-ABFF94B24EDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

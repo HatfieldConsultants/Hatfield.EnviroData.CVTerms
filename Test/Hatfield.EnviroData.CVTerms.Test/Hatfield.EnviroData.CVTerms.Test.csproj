@@ -58,6 +58,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Hatfield.EnviroData.DataAcquisition\Source\Hatfield.EnviroData.DataAcquisition.XML\Hatfield.EnviroData.DataAcquisition.XML.csproj">
+      <Project>{3dc7a821-c52c-42d7-b769-abff94b24ede}</Project>
+      <Name>Hatfield.EnviroData.DataAcquisition.XML</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hatfield.EnviroData.DataAcquisition\Source\Hatfield.EnviroData.DataAcquisition\Hatfield.EnviroData.DataAcquisition.csproj">
+      <Project>{fb279550-18d7-43d5-bc1e-01b651ed1c76}</Project>
+      <Name>Hatfield.EnviroData.DataAcquisition</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Source\Hatfield.EnviroData.CVTerms\Hatfield.EnviroData.CVTerms.csproj">
       <Project>{6751d698-fd15-4a8b-a782-3f67551a5e3f}</Project>
       <Name>Hatfield.EnviroData.CVTerms</Name>

@@ -15,8 +15,8 @@ namespace Hatfield.EnviroData.CVTermsUploader.Test
         [Test]
         public void ScrapeCVEndpointsTest()
         {
-            CVTermParser parser = new CVTermParser();
-            var endpoints = parser.GetAPIEndpoints("http://vocabulary.odm2.org/api/v1/", "http://vocabulary.odm2.org");
+            CVTermAPILayer parser = new CVTermAPILayer();
+            var endpoints = parser.GetAPIEndpoints( "http://vocabulary.odm2.org");
 
             Assert.IsNotEmpty(endpoints);
             Assert.AreEqual(28, endpoints.Count());
@@ -28,22 +28,31 @@ namespace Hatfield.EnviroData.CVTermsUploader.Test
 
         }
 
-
-
         [Test]
         public void GetCVTest()
         {
-            CVTermParser parser = new CVTermParser();
-            var result = parser.GetCVSkos("http://vocabulary.odm2.org", "");
-
+            CVTermAPILayer parser = new CVTermAPILayer();
+            var result = parser.GetSingleCV("http://vocabulary.odm2.org/api/v1/","http://vocabulary.odm2.org/api/v1/actiontype/", "skos");
+            Assert.IsNotNull(result);
         }
 
         [Test]
-        public void ImportXMLDataTest()
+        public void GetCVFailTest()
         {
-            CVTermParser parser = new CVTermParser();
-            var doc = XDocument.Parse(parser.GetCVSkos("http://vocabulary.odm2.org", ""));
-            parser.ImportXMLData(doc);
+            CVTermAPILayer parser = new CVTermAPILayer();
+            var result = parser.GetSingleCV("http://vocabulary.odm2.org/api/v1/" , "http://vocabulary.odm2.org/api/v1/actiontyumtype/", "skos");
+            Assert.IsNotNull(result);
+            Assert.AreSame("No Data Found", result);
+        }
+
+        [Test]
+        public void ExtractSKOSIntoCVModelsTest()
+        {
+            CVTermAPILayer parser = new CVTermAPILayer();
+            var doc = XDocument.Parse(parser.GetSingleCV("http://vocabulary.odm2.org/api/v1/" ,"http://vocabulary.odm2.org/api/v1/actiontype/", ""));
+            var extractedDataSet = parser.ImportXMLData(doc);
+            Assert.AreEqual(true, extractedDataSet.IsExtractedSuccess);
+            Assert.AreEqual(24, extractedDataSet.ExtractedEntities.Count());
         }
     }
 }

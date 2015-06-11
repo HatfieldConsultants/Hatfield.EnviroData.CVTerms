@@ -18,3 +18,7 @@ C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.En
 C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Hatfield.EnviroData.Core.dll
 C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\EntityFramework.dll
 C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\EntityFramework.xml
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Moq.dll
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\Moq.xml
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\gvassas\Desktop\EnviroData\Hatfield.EnviroData.CVTerms\Test\Hatfield.EnviroData.CVTerms.Test\bin\Debug\EntityFramework.SqlServer.xml

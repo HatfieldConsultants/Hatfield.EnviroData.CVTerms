@@ -17,7 +17,7 @@ namespace Hatfield.EnviroData.CVUpdater
             string VocabSiteUrl = ConfigurationManager.AppSettings["VocabTermsUrl"];
 
             CVTermAPILayer parser = new CVTermAPILayer();
-            CVTermRepository repository = new CVTermRepository();
+            CVTermBusinessLayer biz = new CVTermBusinessLayer(new ODM2Entities());
 
             var endpoints = parser.GetAPIEndpoints(VocabSiteUrl);
 
@@ -27,7 +27,7 @@ namespace Hatfield.EnviroData.CVUpdater
                 var doc = new XDocument();
                 var rawCV = parser.GetSingleCV(ApiUrl, endpoint.Value, "skos");
                 var results = parser.ImportXMLData(XDocument.Parse(rawCV));
-                repository.WriteToDB(endpoint.Value, results.ExtractedEntities);
+                biz.AddCVs(endpoint.Value, results.ExtractedEntities);
             }
         }
     }

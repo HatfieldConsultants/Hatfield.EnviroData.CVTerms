@@ -82,8 +82,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIModel.cs" />
+    <Compile Include="CVTermBusinessLayer.cs" />
     <Compile Include="CVModel.cs" />
-    <Compile Include="CVTermRepository.cs" />
     <Compile Include="CVTermAPILayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

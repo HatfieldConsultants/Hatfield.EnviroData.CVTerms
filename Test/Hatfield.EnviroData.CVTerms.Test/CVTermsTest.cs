@@ -6,6 +6,9 @@ using NUnit.Framework;
 using Hatfield.EnviroData.CVUpdater;
 using System.Configuration;
 using System.Xml.Linq;
+using Moq;
+using Hatfield.EnviroData.Core;
+using System.Data.Entity;
 
 namespace Hatfield.EnviroData.CVTermsUploader.Test
 {
@@ -16,14 +19,14 @@ namespace Hatfield.EnviroData.CVTermsUploader.Test
         public void ScrapeCVEndpointsTest()
         {
             CVTermAPILayer parser = new CVTermAPILayer();
-            var endpoints = parser.GetAPIEndpoints( "http://vocabulary.odm2.org");
+            var endpoints = parser.GetAPIEndpoints("http://vocabulary.odm2.org");
 
             Assert.IsNotEmpty(endpoints);
             Assert.AreEqual(28, endpoints.Count());
 
             Assert.AreEqual("Action Type", endpoints.ElementAt(0).Key);
             Assert.AreEqual("http://vocabulary.odm2.org/api/v1/actiontype", endpoints.ElementAt(0).Value);
-        }   
+        }
 
         [Test]
         public void GetJsonCVEndpointsTest()
@@ -35,7 +38,7 @@ namespace Hatfield.EnviroData.CVTermsUploader.Test
         public void GetCVTest()
         {
             CVTermAPILayer parser = new CVTermAPILayer();
-            var result = parser.GetSingleCV("http://vocabulary.odm2.org/api/v1/","http://vocabulary.odm2.org/api/v1/actiontype/", "skos");
+            var result = parser.GetSingleCV("http://vocabulary.odm2.org/api/v1/", "http://vocabulary.odm2.org/api/v1/actiontype/", "skos");
             Assert.IsNotNull(result);
         }
 
@@ -43,7 +46,7 @@ namespace Hatfield.EnviroData.CVTermsUploader.Test
         public void GetCVFailTest()
         {
             CVTermAPILayer parser = new CVTermAPILayer();
-            var result = parser.GetSingleCV("http://vocabulary.odm2.org/api/v1/" , "http://vocabulary.odm2.org/api/v1/actiontyumtype/", "skos");
+            var result = parser.GetSingleCV("http://vocabulary.odm2.org/api/v1/", "http://vocabulary.odm2.org/api/v1/actiontyumtype/", "skos");
             Assert.IsNotNull(result);
             Assert.AreSame("No Data Found", result);
         }
@@ -52,10 +55,11 @@ namespace Hatfield.EnviroData.CVTermsUploader.Test
         public void ExtractSKOSIntoCVModelsTest()
         {
             CVTermAPILayer parser = new CVTermAPILayer();
-            var doc = XDocument.Parse(parser.GetSingleCV("http://vocabulary.odm2.org/api/v1/" ,"http://vocabulary.odm2.org/api/v1/actiontype/", ""));
+            var doc = XDocument.Parse(parser.GetSingleCV("http://vocabulary.odm2.org/api/v1/", "http://vocabulary.odm2.org/api/v1/actiontype/", ""));
             var extractedDataSet = parser.ImportXMLData(doc);
             Assert.AreEqual(true, extractedDataSet.IsExtractedSuccess);
             Assert.AreEqual(24, extractedDataSet.ExtractedEntities.Count());
         }
     }
 }
+

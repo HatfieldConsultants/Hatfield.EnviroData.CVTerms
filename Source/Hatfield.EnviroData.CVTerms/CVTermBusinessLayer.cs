@@ -31,18 +31,19 @@ namespace Hatfield.EnviroData.CVUpdater
 
                 if (String.IsNullOrEmpty(result))
                 {
-                    //Instantiate a new object of the specific type
-                    var cv = Activator.CreateInstance(type);
-                    //Set properties on new object
-                    cv.Term = entity.Term;
-                    cv.Name = entity.Name;
-                    cv.Definition = entity.Definition;
-                    cv.Category = entity.Category;
-                    cv.SourceVocabularyURI = entity.SourceVocabularyURI;
-
-                    var duplicate = CheckForDuplicates(cv.Name);
-                    if(!duplicate)
-                    {
+                    
+                    var duplicate = CheckForDuplicates(entity.Name);
+                    if (!duplicate)
+                    { 
+                        //Instantiate a new object of the specific type
+                        var cv = Activator.CreateInstance(type);
+                        //Set properties on new object
+                        cv.Term = entity.Term;
+                        cv.Name = entity.Name;
+                        cv.Definition = entity.Definition;
+                        cv.Category = entity.Category;
+                        cv.SourceVocabularyURI = entity.SourceVocabularyURI;
+                    
                         AddSingleCV(cv);
                     }
                 }

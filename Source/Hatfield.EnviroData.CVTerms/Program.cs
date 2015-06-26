@@ -11,8 +11,11 @@ namespace Hatfield.EnviroData.CVUpdater
 {
     class Program
     {
+        private static log4net.ILog log = log4net.LogManager.GetLogger("Hatfield.EnviroData.CVTerms");
+
         public static void Main(string[] args)
         {
+            log4net.Config.BasicConfigurator.Configure();
             string ApiUrl = ConfigurationManager.AppSettings["ApiUrl"];
             string VocabSiteUrl = ConfigurationManager.AppSettings["VocabTermsUrl"];
 

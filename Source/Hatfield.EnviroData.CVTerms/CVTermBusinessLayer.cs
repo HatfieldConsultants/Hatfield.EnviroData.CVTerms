@@ -24,6 +24,7 @@ namespace Hatfield.EnviroData.CVUpdater
             //Get the entity corresponding to the endpoint
             var type = types[endpoint].GetType();
             _entityContext = _context.Set(type);
+            //context.Connection.Open();
 
             foreach (var entity in extractedEntities)
             {
@@ -31,24 +32,36 @@ namespace Hatfield.EnviroData.CVUpdater
 
                 if (String.IsNullOrEmpty(result))
                 {
-                    
-                    var duplicate = CheckForDuplicates(entity.Name);
-                    if (!duplicate)
-                    { 
-                        //Instantiate a new object of the specific type
-                        var cv = Activator.CreateInstance(type);
-                        //Set properties on new object
-                        cv.Term = entity.Term;
-                        cv.Name = entity.Name;
-                        cv.Definition = entity.Definition;
-                        cv.Category = entity.Category;
-                        cv.SourceVocabularyURI = entity.SourceVocabularyURI;
-                    
+                    string tableName = types[endpoint].ToString();
+
+                    var results = _entityContext.Find(entity.Name);
+
+                    var cv = Activator.CreateInstance(type);
+                    //Set properties on new object
+                    cv.Term = entity.Term;
+                    cv.Name = entity.Name;
+                    cv.Definition = entity.Definition;
+                    cv.Category = entity.Category;
+                    cv.SourceVocabularyURI = entity.SourceVocabularyURI;
+
+                    if (results == null)
+                    {                                     
                         AddSingleCV(cv);
+                    }
+                    else
+                    {
+                        _context.Entry(results).CurrentValues.SetValues(cv);
+                        _context.SaveChanges();
                     }
                 }
             }
         }
+
+        //public void CheckForDeleted(string endpoint)
+        //{
+        //    var type = types[endpoint].GetType();
+        //    _entityContext = _context.Set(type);
+        //}
 
         public string VerifyData(CVModel entity)
         {
@@ -58,16 +71,6 @@ namespace Hatfield.EnviroData.CVUpdater
                 message= "Bad Data, please contact site administrator";
             }
             return message;
-        }
-
-        public bool CheckForDuplicates(string name)
-        {
-            bool isDuplicate = false;
-            if (_entityContext.Find(name) != null)
-            {
-                isDuplicate = true;
-            }
-            return isDuplicate;
         }
 
         public void AddSingleCV(object cv)

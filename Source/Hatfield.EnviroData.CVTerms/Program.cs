@@ -29,8 +29,10 @@ namespace Hatfield.EnviroData.CVUpdater
             {
                 var doc = new XDocument();
                 var rawCV = parser.GetSingleCV(ApiUrl, endpoint.Value, "skos");
-                var results = parser.ImportXMLData(XDocument.Parse(rawCV));
-                biz.AddCVs(endpoint.Value, results.ExtractedEntities);
+                var results = parser.ImportXMLData(XDocument.Parse(rawCV));               
+                biz.AddOrUpdateCVs(endpoint.Value, results.ExtractedEntities);
+                biz.CheckForDeleted(endpoint.Value, results.ExtractedEntities);
+                
             }
         }
     }

@@ -19,12 +19,11 @@ namespace Hatfield.EnviroData.CVUpdater
             _context = context;
         }
 
-        public void AddCVs(string endpoint, IEnumerable<CVModel> extractedEntities)
+        public void AddOrUpdateCVs(string endpoint, IEnumerable<CVModel> extractedEntities)
         {
             //Get the entity corresponding to the endpoint
             var type = types[endpoint].GetType();
             _entityContext = _context.Set(type);
-            //context.Connection.Open();
 
             foreach (var entity in extractedEntities)
             {
@@ -54,14 +53,27 @@ namespace Hatfield.EnviroData.CVUpdater
                         _context.SaveChanges();
                     }
                 }
+
             }
         }
 
-        //public void CheckForDeleted(string endpoint)
-        //{
-        //    var type = types[endpoint].GetType();
-        //    _entityContext = _context.Set(type);
-        //}
+        public void CheckForDeleted(string endpoint, IEnumerable<CVModel> extractedEntities)
+        {
+            var type = types[endpoint].GetType();
+            _entityContext = _context.Set(type);
+
+            foreach (var entity in _entityContext)
+            {
+                var cv = _context.Entry(entity);
+                //var theEntity = _entityContext.Attach(entity);
+                bool exists = extractedEntities.Where(x => x.Name == cv.Property("Name").CurrentValue.ToString()).Any();
+                if (!exists)
+                {
+                    _entityContext.Remove(entity);                   
+                }
+            }
+            _context.SaveChanges();
+        }
 
         public string VerifyData(CVModel entity)
         {

@@ -22,6 +22,13 @@ namespace Hatfield.EnviroData.CVUpdater
         public void AddOrUpdateCVs(string endpoint, IEnumerable<CVModel> extractedEntities)
         {
             //Get the entity corresponding to the endpoint
+            if(!types.ContainsKey(endpoint))
+            {
+                //do nothing if no matching type found for endpoint
+                //need to add to the log in the future
+                return;
+            }
+
             var type = types[endpoint].GetType();
             _entityContext = _context.Set(type);
 
@@ -59,6 +66,13 @@ namespace Hatfield.EnviroData.CVUpdater
 
         public void CheckForDeleted(string endpoint, IEnumerable<CVModel> extractedEntities)
         {
+            if (!types.ContainsKey(endpoint))
+            {
+                //do nothing if no matching type found for endpoint
+                //need to add to the log in the future
+                return;
+            }
+
             var type = types[endpoint].GetType();
             _entityContext = _context.Set(type);
 

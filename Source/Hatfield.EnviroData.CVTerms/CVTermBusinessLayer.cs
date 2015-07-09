@@ -42,22 +42,29 @@ namespace Hatfield.EnviroData.CVUpdater
 
                     var results = _entityContext.Find(entity.Name);
 
-                    var cv = Activator.CreateInstance(type);
-                    //Set properties on new object
-                    cv.Term = entity.Term;
-                    cv.Name = entity.Name;
-                    cv.Definition = entity.Definition;
-                    cv.Category = entity.Category;
-                    cv.SourceVocabularyURI = entity.SourceVocabularyURI;
 
                     if (results == null)
-                    {                                     
+                    {
+                        var cv = Activator.CreateInstance(type);
+                        //Set properties on new object
+                        cv.Term = entity.Term;
+                        cv.Name = entity.Name;
+                        //cv.Definition = entity.Definition;
+                        cv.Category = entity.Category;
+                        cv.SourceVocabularyURI = entity.SourceVocabularyURI;          
                         AddSingleCV(cv);
                     }
                     else
                     {
+                        var cv = _context.Entry(results);
+                        //cv.Property("Name").CurrentValue = entity.Name;
+                        cv.Property("Term").CurrentValue = entity.Term;
+                        //cv.Property("Definition").CurrentValue = entity.Definition;
+                        cv.Property("Category").CurrentValue = entity.Category;
+                        cv.Property("SourceVocabularyURI").CurrentValue = entity.SourceVocabularyURI;
+
                         _context.Entry(results).CurrentValues.SetValues(cv);
-                        Console.WriteLine("Updated term '"+cv.Name+"'");
+                        Console.WriteLine("Updated term '" + cv.Property("Name").CurrentValue.ToString() + "'");
                         _context.SaveChanges();
                     }
                 }
@@ -84,11 +91,11 @@ namespace Hatfield.EnviroData.CVUpdater
                 bool exists = extractedEntities.Where(x => x.Name == cv.Property("Name").CurrentValue.ToString()).Any();
                 if (!exists)
                 {
-                    _entityContext.Remove(entity);
-                    Console.WriteLine("Deleted term '" + cv.Property("Name").CurrentValue.ToString() + "'");
+                    //_entityContext.Remove(entity);
+                    Console.WriteLine("Deleted term '" + cv.Property("Name").CurrentValue.ToString() + "' - not deleted because of FK conflict");
                 }
             }
-            _context.SaveChanges();
+            //_context.SaveChanges();
         }
 
         public string VerifyData(CVModel entity)

@@ -1,4 +1,5 @@
 ﻿using Hatfield.EnviroData.Core;
+using Hatfield.EnviroData.DataAcquisition;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,14 +20,14 @@ namespace Hatfield.EnviroData.CVUpdater
             _context = context;
         }
 
-        public void AddOrUpdateCVs(string endpoint, IEnumerable<CVModel> extractedEntities)
+        public IResult AddOrUpdateCVs(string endpoint, IEnumerable<CVModel> extractedEntities)
         {
             //Get the entity corresponding to the endpoint
             if(!types.ContainsKey(endpoint))
             {
                 //do nothing if no matching type found for endpoint
                 //need to add to the log in the future
-                return;
+                return new BaseResult(ResultLevel.INFO, "No matching type was found for the endpoint");
             }
 
             var type = types[endpoint].GetType();
@@ -34,14 +35,13 @@ namespace Hatfield.EnviroData.CVUpdater
 
             foreach (var entity in extractedEntities)
             {
-                string result = VerifyData(entity);
+                var result = VerifyData(entity);
 
-                if (String.IsNullOrEmpty(result))
+                if (result.Level == ResultLevel.INFO)
                 {
                     string tableName = types[endpoint].ToString();
 
                     var results = _entityContext.Find(entity.Name);
-
 
                     if (results == null)
                     {
@@ -53,6 +53,8 @@ namespace Hatfield.EnviroData.CVUpdater
                         cv.Category = entity.Category;
                         cv.SourceVocabularyURI = entity.SourceVocabularyURI;          
                         AddSingleCV(cv);
+
+                        return new BaseResult(ResultLevel.INFO, "A new term was added:"+entity.Term);
                     }
                     else
                     {
@@ -64,21 +66,25 @@ namespace Hatfield.EnviroData.CVUpdater
                         cv.Property("SourceVocabularyURI").CurrentValue = entity.SourceVocabularyURI;
 
                         _context.Entry(results).CurrentValues.SetValues(cv);
-                        Console.WriteLine("Updated term '" + cv.Property("Name").CurrentValue.ToString() + "'");
                         _context.SaveChanges();
+                        return new BaseResult(ResultLevel.INFO, "Updated row:"+entity.Term+ " in type:" + type);
                     }
                 }
-
+                else
+                {
+                    return new BaseResult(ResultLevel.ERROR, "Invalid Data");
+                }               
             }
+            return new BaseResult(ResultLevel.INFO, "Completed adding/updating CV for type:" + endpoint);
         }
 
-        public void CheckForDeleted(string endpoint, IEnumerable<CVModel> extractedEntities)
+        public IResult CheckForDeleted(string endpoint, IEnumerable<CVModel> extractedEntities)
         {
             if (!types.ContainsKey(endpoint))
             {
                 //do nothing if no matching type found for endpoint
                 //need to add to the log in the future
-                return;
+                return new BaseResult(ResultLevel.ERROR, "No matching CV found");
             }
 
             var type = types[endpoint].GetType();
@@ -92,20 +98,21 @@ namespace Hatfield.EnviroData.CVUpdater
                 if (!exists)
                 {
                     //_entityContext.Remove(entity);
-                    Console.WriteLine("Deleted term '" + cv.Property("Name").CurrentValue.ToString() + "' - not deleted because of FK conflict");
+                    return new BaseResult(ResultLevel.INFO, "Deleted term " + cv.Property("Term").CurrentValue.ToString());
                 }
             }
             //_context.SaveChanges();
+            return new BaseResult(ResultLevel.ERROR, "CV of type "+endpoint+" has been updated");
         }
 
-        public string VerifyData(CVModel entity)
+        public IResult VerifyData(CVModel entity)
         {
-            string message = null;
             if (entity.Term == null || entity.Name == null)
             {
-                message= "Bad Data, please contact site administrator";
+                return new BaseResult(ResultLevel.ERROR, "Data does not contain sufficient information");
             }
-            return message;
+            else
+            { return new BaseResult(ResultLevel.INFO, "Data is complete"); }
         }
 
         public void AddSingleCV(object cv)

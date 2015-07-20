@@ -23,12 +23,14 @@ namespace Hatfield.EnviroData.CVUpdater
         public IResult AddOrUpdateCVs(string endpoint, IEnumerable<CVModel> extractedEntities)
         {
             //Get the entity corresponding to the endpoint
-            if(!types.ContainsKey(endpoint))
+            if (!types.ContainsKey(endpoint))
             {
                 //do nothing if no matching type found for endpoint
                 //need to add to the log in the future
                 return new BaseResult(ResultLevel.INFO, "No matching type was found for the endpoint");
             }
+
+            string resultMessages = "";
 
             var type = types[endpoint].GetType();
             _entityContext = _context.Set(type);
@@ -51,10 +53,10 @@ namespace Hatfield.EnviroData.CVUpdater
                         cv.Name = entity.Name;
                         //cv.Definition = entity.Definition;
                         cv.Category = entity.Category;
-                        cv.SourceVocabularyURI = entity.SourceVocabularyURI;          
+                        cv.SourceVocabularyURI = entity.SourceVocabularyURI;
                         AddSingleCV(cv);
 
-                        return new BaseResult(ResultLevel.INFO, "Term '"+entity.Term+"' was added");
+                        resultMessages += "Term '" + entity.Term + "' was added";
                     }
                     else
                     {
@@ -66,20 +68,26 @@ namespace Hatfield.EnviroData.CVUpdater
                         cv.Property("SourceVocabularyURI").CurrentValue = entity.SourceVocabularyURI;
 
                         _context.Entry(results).CurrentValues.SetValues(cv);
-                        _context.SaveChanges();
-                        return new BaseResult(ResultLevel.INFO, "Updated row '"+entity.Term+ "' in type '" + type+"'");
+
+                        resultMessages += "Updated row '" + entity.Term + "' in type '" + type + "',";
                     }
                 }
                 else
                 {
-                    return new BaseResult(ResultLevel.ERROR, "Invalid Data");
-                }               
+                    resultMessages += "Invalid Data";
+                }
+
             }
-            return new BaseResult(ResultLevel.INFO, "Completed adding/updating CV for type'" + endpoint+"'");
+            _context.SaveChanges();
+            return new BaseResult(ResultLevel.INFO, " - Completed adding/updating CV for type'" + endpoint + "'" + resultMessages);
+
         }
 
         public IResult CheckForDeleted(string endpoint, IEnumerable<CVModel> extractedEntities)
         {
+            string resultMessages = "";
+
+            var result = new BaseResult(ResultLevel.INFO, "");
             if (!types.ContainsKey(endpoint))
             {
                 //do nothing if no matching type found for endpoint
@@ -98,11 +106,11 @@ namespace Hatfield.EnviroData.CVUpdater
                 if (!exists)
                 {
                     //_entityContext.Remove(entity);
-                    return new BaseResult(ResultLevel.INFO, "Deleted term " + cv.Property("Term").CurrentValue.ToString());
+                    resultMessages = "Deleted term " + cv.Property("Term").CurrentValue.ToString();
                 }
             }
             //_context.SaveChanges();
-            return new BaseResult(ResultLevel.INFO, "CV of type '"+endpoint+"' has been updated");
+            return new BaseResult(ResultLevel.INFO, " - CV of type '" + endpoint + "' has been updated," + resultMessages+", ");
         }
 
         public IResult VerifyData(CVModel entity)
@@ -118,7 +126,7 @@ namespace Hatfield.EnviroData.CVUpdater
         public void AddSingleCV(object cv)
         {
             _entityContext.Add(cv);
-            _context.SaveChanges();
+
         }
     }
 }

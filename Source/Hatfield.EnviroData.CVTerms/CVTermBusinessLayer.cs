@@ -54,7 +54,7 @@ namespace Hatfield.EnviroData.CVUpdater
                         cv.SourceVocabularyURI = entity.SourceVocabularyURI;          
                         AddSingleCV(cv);
 
-                        return new BaseResult(ResultLevel.INFO, "A new term was added:"+entity.Term);
+                        return new BaseResult(ResultLevel.INFO, "Term '"+entity.Term+"' was added");
                     }
                     else
                     {
@@ -67,7 +67,7 @@ namespace Hatfield.EnviroData.CVUpdater
 
                         _context.Entry(results).CurrentValues.SetValues(cv);
                         _context.SaveChanges();
-                        return new BaseResult(ResultLevel.INFO, "Updated row:"+entity.Term+ " in type:" + type);
+                        return new BaseResult(ResultLevel.INFO, "Updated row '"+entity.Term+ "' in type '" + type+"'");
                     }
                 }
                 else
@@ -75,7 +75,7 @@ namespace Hatfield.EnviroData.CVUpdater
                     return new BaseResult(ResultLevel.ERROR, "Invalid Data");
                 }               
             }
-            return new BaseResult(ResultLevel.INFO, "Completed adding/updating CV for type:" + endpoint);
+            return new BaseResult(ResultLevel.INFO, "Completed adding/updating CV for type'" + endpoint+"'");
         }
 
         public IResult CheckForDeleted(string endpoint, IEnumerable<CVModel> extractedEntities)
@@ -102,7 +102,7 @@ namespace Hatfield.EnviroData.CVUpdater
                 }
             }
             //_context.SaveChanges();
-            return new BaseResult(ResultLevel.ERROR, "CV of type "+endpoint+" has been updated");
+            return new BaseResult(ResultLevel.INFO, "CV of type '"+endpoint+"' has been updated");
         }
 
         public IResult VerifyData(CVModel entity)

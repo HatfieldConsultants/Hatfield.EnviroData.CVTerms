@@ -35,41 +35,43 @@ namespace Hatfield.EnviroData.CVUpdater
             var type = types[endpoint].GetType();
             _entityContext = _context.Set(type);
 
-            foreach (var entity in extractedEntities)
+            for (var i=0; i<extractedEntities.Count(); i++)
             {
-                var result = VerifyData(entity);
+                var result = VerifyData(extractedEntities.ElementAt(i));
 
                 if (result.Level == ResultLevel.INFO)
                 {
                     string tableName = types[endpoint].ToString();
 
-                    var results = _entityContext.Find(entity.Name);
+                    var results = _entityContext.Find(extractedEntities.ElementAt(i).Name);
 
                     if (results == null)
                     {
                         var cv = Activator.CreateInstance(type);
                         //Set properties on new object
-                        cv.Term = entity.Term;
-                        cv.Name = entity.Name;
+                        cv.Term = extractedEntities.ElementAt(i).Term;
+                        cv.Name = extractedEntities.ElementAt(i).Name;
                         //cv.Definition = entity.Definition;
-                        cv.Category = entity.Category;
-                        cv.SourceVocabularyURI = entity.SourceVocabularyURI;
+                        cv.Category = extractedEntities.ElementAt(i).Category;
+                        cv.SourceVocabularyURI = extractedEntities.ElementAt(i).SourceVocabularyURI;
                         AddSingleCV(cv);
 
-                        resultMessages += "Term '" + entity.Term + "' was added";
+                        resultMessages += "Term '" + extractedEntities.ElementAt(i).Term + "' was added";
+                        resultMessages += "Fetching data for term'" + extractedEntities.ElementAt(i + 1).Term;
+
                     }
                     else
                     {
                         var cv = _context.Entry(results);
                         //cv.Property("Name").CurrentValue = entity.Name;
-                        cv.Property("Term").CurrentValue = entity.Term;
+                        cv.Property("Term").CurrentValue = extractedEntities.ElementAt(i).Term;
                         //cv.Property("Definition").CurrentValue = entity.Definition;
-                        cv.Property("Category").CurrentValue = entity.Category;
-                        cv.Property("SourceVocabularyURI").CurrentValue = entity.SourceVocabularyURI;
+                        cv.Property("Category").CurrentValue = extractedEntities.ElementAt(i).Category;
+                        cv.Property("SourceVocabularyURI").CurrentValue = extractedEntities.ElementAt(i).SourceVocabularyURI;
 
                         _context.Entry(results).CurrentValues.SetValues(cv);
 
-                        resultMessages += "Updated row '" + entity.Term + "' in type '" + type + "',";
+                        resultMessages += "Updating row '" + extractedEntities.ElementAt(i+1).Term + "' in type '" + type + "',";
                     }
                 }
                 else
@@ -98,9 +100,9 @@ namespace Hatfield.EnviroData.CVUpdater
             var type = types[endpoint].GetType();
             _entityContext = _context.Set(type);
 
-            foreach (var entity in _entityContext)
+            for (var i = 0; i< extractedEntities.Count(); i ++)
             {
-                var cv = _context.Entry(entity);
+                var cv = _context.Entry(extractedEntities.ElementAt(i));
                 //var theEntity = _entityContext.Attach(entity);
                 bool exists = extractedEntities.Where(x => x.Name == cv.Property("Name").CurrentValue.ToString()).Any();
                 if (!exists)
